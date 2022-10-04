@@ -9,12 +9,13 @@ import { WithSessionType } from './withSession';
 export default function withAuthorizedUser(
   next: NextFunction<NextApiRequest, ServerResponse>
 ) {
-  return async function WithAuthorizedUser(
+  return async function withAuthorizedUserNext(
     req: NextApiRequest & WithSessionType,
     res: ServerResponse
   ) {
     if (!req.session.user) {
-      return await res.reject(new UnauthorizedError());
+      const error = new UnauthorizedError();
+      return await res.reject(error);
     }
 
     await next(req, res);
