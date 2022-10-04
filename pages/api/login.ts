@@ -24,8 +24,9 @@ const login = async (
   }; //await getUser(req.DB, login);
 
   req.session.user = sessionUser;
+  await req.session.save();
 
-  return res.resolve(sessionUser);
+  return res.resolve();
 };
 
 export default withApi({

@@ -13,8 +13,10 @@ export class ServerResponse {
     this.res = res;
   }
 
-  public async resolve(value: any) {
-    return await this.res.status(HTTP_STATUS_CODES.OK).json(value);
+  public async resolve(value?: any) {
+    return await this.res
+      .status(HTTP_STATUS_CODES.OK)
+      .json(value ?? { ok: true });
   }
 
   public async reject(error: RejectErrorType, value?: any) {
