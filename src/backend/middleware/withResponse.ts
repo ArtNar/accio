@@ -24,6 +24,10 @@ export class ServerResponse {
       .status(error.statusCode)
       .json(value ?? { error: error.message });
   }
+
+  public async redirect(url: string) {
+    return await this.res.redirect(url);
+  }
 }
 
 export function withResponse(

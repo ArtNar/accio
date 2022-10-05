@@ -18,14 +18,14 @@ export function withData<T>(
       case API_METHODS.PUT: {
         const newReq = req as NextApiRequest & WithDataType<T>;
 
-        let model = newReq.body;
-        if (!model) {
+        let data = newReq.body;
+        if (!data) {
           return res.reject(new BadRequestError('Empty Body'));
         }
 
-        if (model && typeof model === 'string') {
+        if (data && typeof data === 'string') {
           try {
-            model = JSON.parse(model);
+            data = JSON.parse(data);
           } catch (err: any) {
             return res.reject(
               new BadRequestError(`Unable parse input Json -> ${err.message}`)
@@ -33,11 +33,11 @@ export function withData<T>(
           }
         }
 
-        if (typeof model !== 'object') {
+        if (typeof data !== 'object') {
           return res.reject(new BadRequestError('Bad Body'));
         }
 
-        newReq.data = model;
+        newReq.data = data;
         await next(newReq, res);
         break;
       }

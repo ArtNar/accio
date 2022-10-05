@@ -8,10 +8,6 @@ export type WithSessionType = {
   session: IronSession & { user?: UserType };
 };
 
-console.log(
-  process.env.SECRET_COOKIE_PASSWORD,
-  'process.env.SECRET_COOKIE_PASSWORD'
-);
 const sessionOptions = {
   cookieName: 'accio-session',
   password: process.env.SECRET_COOKIE_PASSWORD as string,
