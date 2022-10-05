@@ -1,5 +1,6 @@
 import type { NextApiRequest } from 'next';
 
+import { BadRequestError } from 'src/backend/errors/BadRequestError';
 import { withApi } from 'src/backend/middleware/withApi';
 import { withData, WithDataType } from 'src/backend/middleware/withData';
 import { ServerResponse } from 'src/backend/middleware/withResponse';
@@ -23,10 +24,14 @@ const login = async (
     role: ROLES.ADMIN,
   }; //await getUser(req.DB, login);
 
+  if (!sessionUser) {
+    return res.reject(new BadRequestError('Bad request'));
+  }
+
   req.session.user = sessionUser;
   await req.session.save();
 
-  return res.resolve();
+  return res.redirect(`/dashboard`);
 };
 
 export default withApi({
