@@ -13,9 +13,3 @@ export enum ROLES {
 export type NextFunction<T, R> = {
   (req: T, res: R): any;
 };
-
-export type UserType = {
-  id: number;
-  login: string;
-  role: ROLES;
-};

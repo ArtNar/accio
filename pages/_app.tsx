@@ -2,12 +2,14 @@ import { ConfigProvider } from 'antd';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
+import { validateMessages } from 'src/common/validateMessages';
+
 import '../styles/globals.css';
 import 'antd/dist/antd.variable.min.css';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#25b864',
+    // primaryColor: '#25b864',
   },
 });
 
@@ -53,7 +55,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name='twitter:image' content={og.image} />
         <meta content='width=device-width, initial-scale=1' name='viewport' />
       </Head>
-      <Component {...pageProps} />
+      <ConfigProvider form={{ validateMessages }}>
+        <Component {...pageProps} />
+      </ConfigProvider>
     </>
   );
 }

@@ -6,14 +6,10 @@ import { withData, WithDataType } from 'src/backend/middleware/withData';
 import { ServerResponse } from 'src/backend/middleware/withResponse';
 import { WithSessionType } from 'src/backend/middleware/withSession';
 import { API_METHODS, ROLES } from 'src/backend/types';
-
-type LoginDataInput = {
-  login: string;
-  password: string;
-};
+import { LoginDataInputType } from 'src/common/types/api/login';
 
 const login = async (
-  req: NextApiRequest & WithSessionType & WithDataType<LoginDataInput>,
+  req: NextApiRequest & WithSessionType & WithDataType<LoginDataInputType>,
   res: ServerResponse
 ) => {
   const { login, password } = req.data;
