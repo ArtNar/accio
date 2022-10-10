@@ -1,0 +1,23 @@
+@import 'styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.fromContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: $base-margin * 24;
+  padding: $base-margin * 2 $base-margin * 3;
+}
+
+.form {
+  width: 100%;
+  max-width: 360px;
+}
+
+.field {
+  width: 100%;
+}

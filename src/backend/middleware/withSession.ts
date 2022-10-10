@@ -2,7 +2,9 @@ import { IronSession } from 'iron-session';
 import { withIronSessionApiRoute } from 'iron-session/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { NextFunction, UserType } from '../types';
+import { UserType } from 'src/common/types/user';
+
+import { NextFunction } from '../types';
 
 export type WithSessionType = {
   session: IronSession & { user?: UserType };
